@@ -1,0 +1,51 @@
+{
+  "collectionName": "components_cards_custom_card",
+  "info": {
+    "displayName": "Custom Card",
+    "icon": "creditCard",
+    "description": "A customizable card for the cards section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "description": {
+      "type": "text",
+      "required": false
+    },
+    "backgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "backgroundColor": {
+      "type": "string",
+      "required": false,
+      "default": "#1f2937"
+    },
+    "hasButton": {
+      "type": "boolean",
+      "default": true,
+      "required": false
+    },
+    "buttonText": {
+      "type": "string",
+      "required": false
+    },
+    "buttonUrl": {
+      "type": "string",
+      "required": false
+    },
+    "featuredText": {
+      "type": "string",
+      "required": false
+    },
+    "featuredSubtitle": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

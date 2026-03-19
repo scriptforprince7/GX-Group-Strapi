@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_dynamic_zone_cards_section",
+  "info": {
+    "displayName": "Cards",
+    "icon": "apps",
+    "description": "A section with customizable cards in a grid layout"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "subtitle": {
+      "type": "text",
+      "required": false
+    },
+    "cards": {
+      "type": "component",
+      "component": "cards.custom-card",
+      "repeatable": true,
+      "required": false
+    }
+  }
+}

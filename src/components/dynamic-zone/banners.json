@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_dynamic_zone_banners",
+  "info": {
+    "displayName": "Banners",
+    "icon": "collapse"
+  },
+  "options": {},
+  "attributes": {
+    "banner_name": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

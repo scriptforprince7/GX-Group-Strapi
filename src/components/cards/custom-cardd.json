@@ -1,0 +1,47 @@
+{
+  "collectionName": "components_cards_custom_cardds",
+  "info": {
+    "displayName": "custom-cardd",
+    "icon": "dashboard"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "backgroundImage": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "#1f2937"
+    },
+    "hasButton": {
+      "type": "boolean",
+      "default": true
+    },
+    "buttonText": {
+      "type": "string"
+    },
+    "buttonUrl": {
+      "type": "string"
+    },
+    "featuredText": {
+      "type": "string"
+    },
+    "featuredSubtitle": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
