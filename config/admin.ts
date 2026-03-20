@@ -22,17 +22,12 @@ const getPreviewPathname = (uid, { locale, document }): string | null => {
 };
 
 export default ({ env }) => {
-  const clientUrl = env('CLIENT_URL') || 'http://localhost:3000';
-  const previewSecret = env('PREVIEW_SECRET') || 'preview_secret';
+  const clientUrl = env('CLIENT_URL');
+  const previewSecret = env('PREVIEW_SECRET');
 
   return {
     auth: {
       secret: env('ADMIN_JWT_SECRET') || env('JWT_SECRET') || 'aB7fK9mP2xQ5tR8wN1zV4cJ6hG3dS7yE9pL2oI5uF0qT8rX3nM6kZ1vC4bA7d',
-      // Add session lifespan to fix deprecation warning
-      sessions: {
-        maxRefreshTokenLifespan: '7d',
-        maxSessionLifespan: '7d',
-      },
     },
     apiToken: {
       salt: env('API_TOKEN_SALT') || 'bX7fK9mP2xQ5tR8wN1zV4cJ6hG3dS7yE9pL2oI5uF0qT8rX3nM6kZ1vC4bA7d',
@@ -43,16 +38,34 @@ export default ({ env }) => {
       },
     },
     flags: {
-      nps: env.bool('FLAG_NPS', false), // Disable NPS to reduce complexity
-      promoteEE: env.bool('FLAG_PROMOTE_EE', false), // Disable EE promotion
+      nps: env.bool('FLAG_NPS', true),
+      promoteEE: env.bool('FLAG_PROMOTE_EE', true),
     },
     preview: {
-      enabled: false, // Disable preview for now to reduce complexity
-    },
-    url: '/admin',
-    // Add encryption key to fix warning
-    secrets: {
-      encryptionKey: env('ENCRYPTION_KEY') || 'dX8fK9mP3xQ6tR9wN2zV5cJ7hG4dS8yE0pL3oI6uF1qT9rX4nM7kZ2vC5bA8e',
+      enabled: true,
+      config: {
+        allowedOrigins: [clientUrl],
+        async handler(uid, { documentId, locale, status }) {
+          const document = await strapi
+            .documents(uid)
+            .findOne({ documentId, locale, status });
+          const pathname = getPreviewPathname(uid, { locale, document });
+
+          // Disable preview if the pathname is not found
+          if (!pathname) {
+            return null;
+          }
+
+          // Use Next.js draft mode
+          const urlSearchParams = new URLSearchParams({
+            url: `/${locale ?? 'en'}${pathname}`,
+            secret: previewSecret,
+            status,
+          });
+
+          return `${clientUrl}/api/preview?${urlSearchParams}`;
+        },
+      },
     },
   };
 };
