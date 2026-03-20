@@ -30,11 +30,11 @@ export default ({ env }) => {
       secret: env('ADMIN_JWT_SECRET') || env('JWT_SECRET') || 'aB7fK9mP2xQ5tR8wN1zV4cJ6hG3dS7yE9pL2oI5uF0qT8rX3nM6kZ1vC4bA7d',
     },
     apiToken: {
-      salt: env('API_TOKEN_SALT'),
+      salt: env('API_TOKEN_SALT') || 'bX7fK9mP2xQ5tR8wN1zV4cJ6hG3dS7yE9pL2oI5uF0qT8rX3nM6kZ1vC4bA7d',
     },
     transfer: {
       token: {
-        salt: env('TRANSFER_TOKEN_SALT'),
+        salt: env('TRANSFER_TOKEN_SALT') || 'cY8fL9mP3xQ6tR9wN2zV5cJ7hG4dS8yE0pL3oI6uF1qT9rX4nM7kZ2vC5bA8e',
       },
     },
     flags: {
