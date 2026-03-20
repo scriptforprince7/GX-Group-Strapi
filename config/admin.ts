@@ -49,6 +49,10 @@ export default ({ env }) => {
     preview: {
       enabled: false, // Disable preview for now to reduce complexity
     },
-    url: env('STRAPI_URL') || '/admin',
+    url: '/admin',
+    // Add encryption key to fix warning
+    secrets: {
+      encryptionKey: env('ENCRYPTION_KEY') || 'dX8fK9mP3xQ6tR9wN2zV5cJ7hG4dS8yE0pL3oI6uF1qT9rX4nM7kZ2vC5bA8e',
+    },
   };
 };
